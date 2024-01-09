@@ -8,4 +8,5 @@ const Colors = {
     text : '#000000',
     smallText : '#808080',
     backgroundColor:'#FAFAFA',
+    buttonRadiusColor:'#8CA1A5',
 }

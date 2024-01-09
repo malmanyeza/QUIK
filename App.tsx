@@ -8,6 +8,8 @@ import PhoneVerificationScreen from './Screens/PhoneVerificationScreen';
 import PasswordScreen from './Screens/PasswordScreen';
 import UsernameScreen from './Screens/UsernameScreen';
 import BiometricScreen from './Screens/BiometricScreen';
+import HomeScreen from './Screens/HomeScreen';
+import CountriesScreen from './Screens/CountriesScreen';
 
 
 const Stack = createStackNavigator();
@@ -32,6 +34,8 @@ const App = () => {
       />
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Countries" component={CountriesScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Biometric" component={BiometricScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Username" component={UsernameScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Password" component={PasswordScreen} options={{ headerShown: false }} />
