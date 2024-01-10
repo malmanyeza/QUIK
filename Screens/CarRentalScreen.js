@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import Header from '../Components/Header';
 import MotorCardsList from '../Components/CarRentalScreen/MotorCardsList';
 import DeliveryTimeModal from '../Components/CarRentalScreen/DeliveryTimeModal';
+import Datepicker from '../Components/CarRentalScreen/DatePicker';
 
 const CarRentalScreen = () => {
   return (
@@ -11,6 +12,11 @@ const CarRentalScreen = () => {
       <MotorCardsList />
         <DeliveryTimeModal 
             isVisible={true}
+            onClose={() => {}}
+        />
+        <Datepicker 
+            isVisible={true}
+            onDateChange={() => {}}
             onClose={() => {}}
         />
     </View>

@@ -11,6 +11,15 @@ export const ModalsProvider = ({ children }) => {
   const [deliveryTime, setDeliveryTime] = useState('');
   const [returnTime, setReturnTime] = useState('');
 
+  const intitialDate = new Date();
+
+  const [datePickerModalVisible, setDatePickerModalVisible] = useState(false);
+  const [deliveryDate, setDeliveryDate] = useState(intitialDate.toDateString().slice(0, -4));
+  const [returnDate, setReturnDate] = useState(intitialDate.toDateString().slice(0, -4));
+  const [isDeliveryDateSelected, setDeliveryDateSelected] = useState(false);
+  const [isReturnDateSelected, setReturnDateSelected] = useState(false);
+
+
   const openDeliveryAndReturnTimeModal = () => {
     setDeliveryAndReturnTimeModalVisible(true);
   };
@@ -20,6 +29,16 @@ export const ModalsProvider = ({ children }) => {
     setReturnTimeSelected(false);
     setDeliveryTimeSelected(false);
   };
+
+  const openDatePickerModal = () => {
+    setDatePickerModalVisible(true);
+  }
+
+  const closeDatePickerModal = () => {
+    setDatePickerModalVisible(false);
+    setDeliveryDateSelected(false);
+    setReturnDateSelected(false);
+  }
 
   
 
@@ -36,6 +55,18 @@ export const ModalsProvider = ({ children }) => {
     setDeliveryTime,
     returnTime,
     setReturnTime,
+    datePickerModalVisible,
+    openDatePickerModal,
+    closeDatePickerModal,
+    deliveryDate,
+    returnDate,
+    isDeliveryDateSelected,
+    setDeliveryDateSelected,
+    isReturnDateSelected,
+    setReturnDateSelected,
+    setReturnDate,
+    setDeliveryDate
+
   };
 
   // Provide the context values to the components

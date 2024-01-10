@@ -6,11 +6,32 @@ import { useModalsContext } from '../../hooks/modalsContext';
 const DurationBox = () => {
   const [selectedTab, setSelectedTab] = useState('shortTerm');
 
-    const { openDeliveryAndReturnTimeModal, setDeliveryTimeSelected, setReturnTimeSelected, returnTime, deliveryTime } = useModalsContext();
+    const { 
+      openDeliveryAndReturnTimeModal, 
+      setDeliveryTimeSelected, 
+      setReturnTimeSelected, 
+      returnTime, 
+      deliveryTime,
+      deliveryDate,
+      returnDate,
+      setDeliveryDateSelected,
+      setReturnDateSelected,
+      openDatePickerModal, 
+    } = useModalsContext();
 
   const handleTabPress = (tab) => {
     setSelectedTab(tab);
   };
+  
+  const openDeliveryDatePickerModal = () => {
+    setDeliveryDateSelected(true);
+    openDatePickerModal();
+  }
+  
+  const openReturnDatePickerModal = () => {
+    setReturnDateSelected(true);
+    openDatePickerModal();
+  }
 
   const openDeliveryTimeModal = () => {
     setDeliveryTimeSelected(true);
@@ -68,8 +89,8 @@ const DurationBox = () => {
         <View style={styles.row}>
           <View style={[styles.column, { borderBottomLeftRadius: 20 }]}>
             <Text style={styles.topText}>FROM</Text>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.dateText}>Wed, Jan 10</Text>
+            <TouchableOpacity style={styles.button} onPress={()=>openDeliveryDatePickerModal()} >
+              <Text style={styles.dateText}>{deliveryDate}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={()=> openDeliveryTimeModal() } >
               <Text style={styles.buttonText}>{deliveryTime}</Text>
@@ -78,8 +99,8 @@ const DurationBox = () => {
 
           <View style={[styles.column, { borderBottomRightRadius: 20 }]}>
             <Text style={styles.topText}>TO</Text>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.dateText}>Wed, Jan 10</Text>
+            <TouchableOpacity style={styles.button} onPress={()=>openReturnDatePickerModal()} >
+              <Text style={styles.dateText}>{returnDate}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText} onPress={()=>openReturnTimeModal()} >{returnTime}</Text>
@@ -116,7 +137,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   unselectedTab: {
-    backgroundColor: 'orange',
+    backgroundColor: '#FFAB91',
   },
   selectedText: {
     color: 'red',
