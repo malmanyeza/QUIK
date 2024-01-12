@@ -80,8 +80,8 @@ const DurationBox = () => {
       {selectedTab === 'longTerm' ? (
         <View style={styles.handoverContainer}>
           <Text style={styles.handoverText}>HANDOVER</Text>
-          <TouchableOpacity style={styles.handoverButton}>
-            <Text style={styles.dateText}>Wed, Jan 10</Text>
+          <TouchableOpacity style={styles.handoverButton} onPress={()=>openDeliveryDatePickerModal()}>
+            <Text style={styles.dateText}>{returnDate}</Text>
             <MaterialCommunityIcons name="calendar" size={20} color="red" />
           </TouchableOpacity>
         </View>

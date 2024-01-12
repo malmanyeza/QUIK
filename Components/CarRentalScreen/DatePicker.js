@@ -40,18 +40,20 @@ const Datepicker = () => {
 
   return (
     <Modal
-      backdropOpacity={0.5}
-      animationType="slide"
+      backdropOpacity={0.7}
+      animationType='fade'
+      animationIn={'fadeIn'}
+      animationOut={'fadeOut'}
       isVisible={datePickerModalVisible}
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <DatePicker date={selectedDate} onDateChange={handleDateChange} textColor="black" mode="date" />
-          <TouchableOpacity style={styles.confirmButton} onPress={handleConfirm}>
+          <TouchableOpacity style={[styles.confirmButton,{marginTop:20}]} onPress={handleConfirm}>
             <Text style={styles.confirmButtonText}>Confirm</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.confirmButton} onPress={onClose}>
-            <Text style={styles.confirmButtonText}>Cancel</Text>
+          <TouchableOpacity style={[styles.confirmButton,{backgroundColor:'white'}]} onPress={onClose}>
+            <Text style={[styles.confirmButtonText,{color:'black'}]}>Cancel</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -72,15 +74,20 @@ const styles = StyleSheet.create({
   },
   confirmButton: {
     width: '100%',
-    backgroundColor: 'blue',
-    borderRadius: 10,
+    backgroundColor: '#EF5350',
+    borderRadius: 25,
     padding: 10,
     alignItems: 'center',
     marginTop: 10,
+    paddingVertical: 15,
+    borderWidth:1,
+    borderColor:'#EF5350',
+    marginBottom:10
   },
   confirmButtonText: {
     color: 'white',
     fontSize: 16,
+    fontWeight:'bold'
   },
 });
 

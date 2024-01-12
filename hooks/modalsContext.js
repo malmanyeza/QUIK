@@ -8,8 +8,8 @@ export const ModalsProvider = ({ children }) => {
   const [deliveryAndReturnTimeModalVisible, setDeliveryAndReturnTimeModalVisible] = useState(false);
   const [isDeliveryTimeSelected, setDeliveryTimeSelected] = useState(false);
   const [isReturnTimeSelected, setReturnTimeSelected] = useState(false);
-  const [deliveryTime, setDeliveryTime] = useState('');
-  const [returnTime, setReturnTime] = useState('');
+  const [deliveryTime, setDeliveryTime] = useState('10:00 - 12:00');
+  const [returnTime, setReturnTime] = useState('10:00 - 12:00');
 
   const intitialDate = new Date();
 

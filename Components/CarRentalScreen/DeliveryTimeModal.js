@@ -64,8 +64,8 @@ const DeliveryTimeModal = () => {
       isVisible={deliveryAndReturnTimeModalVisible}
       onBackdropPress={() => closeDeliveryAndReturnTimeModal()}
       backdropOpacity={0.8}
-      animationIn="slideInUp"
-      animationOut="slideOutDown"
+      animationIn={'fadeIn'}
+      animationOut="fadeOut"
     >
       <View style={styles.modalContainer}>
         <View style={styles.modal}>

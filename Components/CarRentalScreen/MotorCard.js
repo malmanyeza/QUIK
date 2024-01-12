@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 const MotorCard = ({ title, rate, total, image, features }) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
         <View>
@@ -24,7 +24,7 @@ const MotorCard = ({ title, rate, total, image, features }) => {
           </View>
         ))}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 150,
+    backgroundColor:'white'
   },
   footer: {
     flexDirection: 'row',

@@ -12,6 +12,7 @@ import HomeScreen from './Screens/HomeScreen';
 import CountriesScreen from './Screens/CountriesScreen';
 import CarRentalScreen from './Screens/CarRentalScreen';
 import { ModalsProvider } from './hooks/modalsContext';
+import ContinueToBookingScreen from './Screens/ContinueToBookingScreen';
 
 const Stack = createStackNavigator();
 
@@ -36,6 +37,7 @@ const App = () => {
       />
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="ContinueToBooking" component={ContinueToBookingScreen} options={{ headerShown: false }} />
           <Stack.Screen name="CarRental" component={CarRentalScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Countries" component={CountriesScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
