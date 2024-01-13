@@ -50,7 +50,7 @@ const Header = () => {
       onBackdropPress={toggleModal}>
         <View style={styles.modalContent}>
           <TouchableOpacity onPress={toggleModal} style={styles.closeButton}>
-           <MaterialCommunityIcons onPress={toggleModal} name="close" size={20} color="black" />
+           <MaterialCommunityIcons name="close" size={20} color="black" />
           </TouchableOpacity>
           <Text style={styles.modalTitle}>QUIK</Text>
           <View style={styles.buttonRow}>

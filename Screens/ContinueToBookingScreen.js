@@ -6,6 +6,8 @@ import CarView from '../Components/ContinueToBookingScreen/CarView';
 import CarFeaturesList from '../Components/ContinueToBookingScreen/CarFeaturesList';
 import WhatsIncluded from '../Components/ContinueToBookingScreen/WhatsIncuded';
 import Button from '../Components/Button';
+import RentalsHeader from '../Components/ContinueToBookingScreen/Header';
+import HeaderModal from '../Components/ContinueToBookingScreen/HeaderModal';
 
 const ContinueToBookingScreen = () => {
   const [isRounded, setIsRounded] = useState(true);
@@ -16,12 +18,21 @@ const ContinueToBookingScreen = () => {
     setIsRounded(scrollOffset <= 50);
   };
 
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+
   return (
     <View style={styles.container}>
       <Header />
+      <RentalsHeader onMenuPress={toggleModal} />
+      <HeaderModal isVisible={isModalVisible} onClose={toggleModal} />
       <MiniHeader isRounded={isRounded} />
     <ScrollView
-    
       contentContainerStyle={styles.scrollContent}
       onScroll={handleScroll}
       scrollEventThrottle={16}
@@ -42,6 +53,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingTop: 20,
+    paddingBottom:50
   },
   content: {
     // Add styling for your other UI components

@@ -23,7 +23,7 @@ const CarView = () => {
       <Swiper style={styles.swiperContainer} showsPagination={true} loop={false}>
         {images.map((image, index) => (
           <View key={index} style={styles.imageContainer}>
-            <Image source={image} style={styles.image} resizeMode="cover" />
+            <Image source={image} style={styles.image} resizeMode="contain" />
           </View>
         ))}
       </Swiper>
@@ -41,6 +41,7 @@ const CarView = () => {
 
 const styles = StyleSheet.create({
   container: {
+    height: 300,
     borderRadius: 8,
     marginBottom: 10,
   },
@@ -53,11 +54,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   swiperContainer: {
-    height: 250,
     marginBottom: 16,
   },
   imageContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'gray',
