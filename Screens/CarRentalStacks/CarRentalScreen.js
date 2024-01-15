@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Header from '../Components/Header';
-import MotorCardsList from '../Components/CarRentalScreen/MotorCardsList';
-import DeliveryTimeModal from '../Components/CarRentalScreen/DeliveryTimeModal';
-import Datepicker from '../Components/CarRentalScreen/DatePicker';
+import Header from '../../Components/Header';
+import MotorCardsList from '../../Components/CarRentalScreen/MotorCardsList';
+import DeliveryTimeModal from '../../Components/CarRentalScreen/DeliveryTimeModal';
+import Datepicker from '../../Components/CarRentalScreen/DatePicker';
 
 const CarRentalScreen = () => {
   return (

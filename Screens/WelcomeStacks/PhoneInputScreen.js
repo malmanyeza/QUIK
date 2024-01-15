@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity,  } from 'react-native';
-import Header from '../Components/WecomePagesComponents/Header';
-import Button from '../Components/WecomePagesComponents/Button';
+import Header from '../../Components/WecomePagesComponents/Header';
+import Button from '../../Components/WecomePagesComponents/Button';
+import { useNavigation } from '@react-navigation/native';
+import CountryPicker from 'rn-country-picker';
 
 const PhoneInputScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [selectedCountry, setSelectedCountry] = useState(''); // You may want to initialize this based on the user's location
   const [isButtonActivated, setIsButtonActivated] = useState(false);
+  const [isCountryPickerVisible, setIsCountryPickerVisible] = useState(false);
+  const [countryCode, setCountryCode] = useState('263'); 
+
+
+  const selectedValue = (value) => {
+    setCountryCode(value);
+    setIsCountryPickerVisible(false);
+  };
+
+  const navigation = useNavigation();
+
+  const handleContinue = () => {
+    // Handle continue logic here, e.g., send OTP to the phone number
+    navigation.navigate('PhoneVerification');
+  };
 
   const handlePhoneNumberChange = (text) => {
     setPhoneNumber(text);
@@ -39,9 +56,21 @@ const PhoneInputScreen = () => {
       <Text style={styles.smallText}>Enter your phone number to create an account or log in</Text>
 
       <View style={styles.inputContainer}>
-        <View style={styles.countryPickerContainer}>
-          
-        </View>
+      <CountryPicker
+				disable={false}
+				animationType={"slide"}
+				language="en"
+        containerStyle={styles.pickerStyle}
+				pickerTitleStyle={styles.pickerTitleStyle}
+				selectedCountryTextStyle={styles.selectedCountryTextStyle}
+				countryNameTextStyle={styles.countryNameTextStyle}
+				searchBarPlaceHolder={"Search......"}
+				hideCountryFlag={false}
+				hideCountryCode={false}
+				searchBarStyle={styles.searchBarStyle}
+				countryCode={"971"}
+				selectedValue={selectedValue}
+			/>
 
         <TextInput
           style={styles.textInput}
@@ -59,7 +88,8 @@ const PhoneInputScreen = () => {
         )}
       </View>
 
-      <Button activated={isButtonActivated} title="Continue" onPress={() => console.log('Submit Pressed!')} />
+      <Button activated={isButtonActivated} title="Continue" onPress={() =>handleContinue() } />
+
     </View>
   );
 };
@@ -83,7 +113,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: 'black',
     color: 'black',
@@ -119,6 +148,39 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'gray'
   },
+  pickerTitleStyle: {
+    color: "#00ACC1",
+    justifyContent: "center",
+    alignSelf: "center",
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontWeight: "bold",
+    fontSize: 18
+  },
+  selectedCountryTextStyle: {
+    paddingLeft: 5,
+    paddingRight: 5,
+    color: "black",
+    textAlign: "right"
+  },
+  countryNameTextStyle: {
+    paddingLeft: 10,
+    color: "black",
+    textAlign: "right"
+  },
+  searchBarStyle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FAFAFA",
+    color: "black",
+  },
+  pickerStyle: {
+    justifyContent: "center",
+    flex: 1,
+    backgroundColor: "#FAFAFA"
+  }
+
 });
 
 export default PhoneInputScreen;

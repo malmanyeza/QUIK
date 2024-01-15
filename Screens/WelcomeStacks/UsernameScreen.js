@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import Button from '../Components/WecomePagesComponents/Button';
-import Header from '../Components/WecomePagesComponents/Header';
+import Button from '../../Components/WecomePagesComponents/Button';
+import Header from '../../Components/WecomePagesComponents/Header';
+import { useNavigation } from '@react-navigation/native';
 
 const UsernameScreen = () => {
   const [username, setUsername] = useState('');
+
+  const navigation = useNavigation();
+
+  const handleSubmission = () => { 
+    // Handle submission logic here, e.g., send username to the server
+    navigation.navigate('Password');
+  };
 
   const isUsernameEntered = (name) => {
     // Add your logic to check if the username is entered
@@ -31,7 +39,7 @@ const UsernameScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <Button activated={isUsernameEntered(username)} title="Submit" onPress={() => console.log('Submit Pressed!')} />
+      <Button activated={isUsernameEntered(username)} title="Submit" onPress={() => handleSubmission()}  />
     </View>
   );
 };

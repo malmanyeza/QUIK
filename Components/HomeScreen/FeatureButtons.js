@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, FlatList } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 const FeatureButtons = () => {
   const [showMore, setShowMore] = useState(false);
+
+  const navigation = useNavigation();
 
   const handleFeature1Press = (index) => {
     console.log(`Feature ${index + 1} pressed`);
@@ -11,12 +14,87 @@ const FeatureButtons = () => {
 
   };
 
-  const featureData = Array.from({ length: 20 }, (_, index) => ({
-    id: index + 1,
-    title: `Feature ${index + 1}`,
-    image: require('../../assets/images/groceries.jpg'),
-    onPress: () => handleFeature1Press(index),
-  }));
+  const featureData = [
+    {
+      id: 1,
+      title: 'Rides',
+      image: require('../../assets/images/sedan_7240765cf3.png'),
+      onPress: () => handleFeature1Press(0),
+    },
+    {
+      id: 2,
+      title: 'Car rental',
+      image: require('../../assets/images/taxi_car_3113f165e9.png'),
+      onPress: () => navigation.navigate('CarRental'),
+    },
+    {
+      id: 3,
+      title: 'Send Money',
+      image: require('../../assets/images/send_money.png'),
+      onPress: () => handleFeature1Press(2),
+    },
+    {
+      id: 4,
+      title: 'Global transfers',
+      image: require('../../assets/images/groceries.jpg'),
+      onPress: () => handleFeature1Press(3),
+    },
+    {
+      id: 5,
+      title: 'Bills and recharges',
+      image: require('../../assets/images/Bills.png'),
+      onPress: () => handleFeature1Press(4),
+    },
+    {
+      id: 6,
+      title: 'City to city',
+      image: require('../../assets/images/groceries.jpg'),
+      onPress: () => handleFeature1Press(5),
+    },
+    {
+      id: 7,
+      title: 'Home cleaning',
+      image: require('../../assets/images/house_cleaning.jpg'),
+      onPress: () => handleFeature1Press(6),
+    },
+    {
+      id: 8,
+      title: 'Delivery',
+      image: require('../../assets/images/Delivery.webp'),
+      onPress: () => handleFeature1Press(7),
+    },
+    {
+      id: 9,
+      title: 'Bike',
+      image: require('../../assets/images/bike.jpg'),
+      onPress: () => handleFeature1Press(8),
+    },
+    {
+      id: 10,
+      title: 'Laundry',
+      image: require('../../assets/images/laundry.jpeg'),
+      onPress: () => handleFeature1Press(9),
+    },
+    {
+      id: 11,
+      title: 'Tickets and passes',
+      image: require('../../assets/images/tickets.jpg'),
+      onPress: () => handleFeature1Press(10),
+    },
+    {
+      id: 12,
+      title: 'Request money',
+      image: require('../../assets/images/request_money.png'),
+      onPress: () => handleFeature1Press(11),
+    },
+    {
+      id: 13,
+      title: 'Feature 13',
+      image: require('../../assets/images/groceries.jpg'),
+      onPress: () => handleFeature1Press(12),
+    },
+  ];
+
 
   const renderItem = ({ item, index }) => {
     const isShowMoreButton = item.title === 'Show More';
@@ -29,7 +107,7 @@ const FeatureButtons = () => {
         activeOpacity={0.7}
       >
         <View style={styles.imageContainer}>
-          <Image source={item.image} style={styles.image} />
+          <Image source={item.image} style={styles.image} resizeMode='contain'/>
         </View>
         <Text style={styles.buttonText}>{item.title}</Text>
       </TouchableOpacity>
@@ -79,14 +157,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginBottom: 10,
+    justifyContent:'center'
   },
   lowerOpacity: {
     opacity: 0.2,
   },
   imageContainer: {
-    width: 50,
-    height: 50,
-    borderRadius: 40,
+    width: 60,
+    height: 60,
+    borderRadius: 10,
     overflow: 'hidden',
     marginBottom: 5,
   },
@@ -98,6 +177,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'black',
+    textAlign: 'center',
+    maxWidth: 80,
+    fontSize: 13,
   },
   showMoreButton: {
     backgroundColor:'white',

@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import Button from '../Components/WecomePagesComponents/Button';
-import Header from '../Components/WecomePagesComponents/Header';
+import Button from '../../Components/WecomePagesComponents/Button';
+import Header from '../../Components/WecomePagesComponents/Header';
 import Feather from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
 const PasswordScreen = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigation = useNavigation();
+
+  const handleContinue = () => {
+    navigation.navigate('Home'); 
+  };
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -43,7 +50,7 @@ const PasswordScreen = () => {
         </Text>
       </View>
 
-      <Button activated={isStrongPassword(password)} title="Continue" onPress={() => console.log('Submit Pressed!')} />
+      <Button activated={isStrongPassword(password)} title="Continue" onPress={() => handleContinue()} />
     </View>
   );
 };

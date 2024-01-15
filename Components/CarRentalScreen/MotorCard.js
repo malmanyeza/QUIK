@@ -1,9 +1,17 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const MotorCard = ({ title, rate, total, image, features }) => {
+const MotorCard = ({ title, rate, total, image, features}) => {
+
+const navigation = useNavigation()
+
+const goToContinueBooking = () => {
+  navigation.navigate('ContinueToBooking');
+};
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={goToContinueBooking}>
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
         <View>

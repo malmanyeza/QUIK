@@ -8,6 +8,7 @@ const Button = ({ activated, title, onPress }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
+        disabled={!activated}
         style={[styles.button, { backgroundColor: buttonBackgroundColor }]}
         onPress={onPress}
       >

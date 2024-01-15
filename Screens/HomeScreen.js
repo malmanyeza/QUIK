@@ -7,12 +7,14 @@ import GetMore from '../Components/HomeScreen/GetMore';
 
 const HomeScreen = () => {
   return (
-    <ScrollView style={styles.container}>
-      <Header />
+    <View style={styles.container}>
+    <Header />
+    <ScrollView >
       <CityRectangle />
       <FeatureButtons />
       <GetMore />
     </ScrollView>
+    </View>
   );
 };
 

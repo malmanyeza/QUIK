@@ -6,10 +6,17 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useModalsContext } from '../../hooks/modalsContext';
 import LinearGradient from 'react-native-linear-gradient';
 import { Line } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 const MotorCardsList = () => {
   const [showMiniHeader, setShowMiniHeader] = useState(false);
   const flatListRef = useRef(null);
+
+  const navigation = useNavigation();
+
+  const goToContinueBooking = () => {
+    navigation.navigate('ContinueToBooking');
+  };
 
   const { returnDate, deliveryDate, deliveryTime, returnTime } = useModalsContext();
 
@@ -113,7 +120,7 @@ const MotorCardsList = () => {
     };
 
     return (
-      <TouchableOpacity style={styles.miniHeader} onPress={handleMiniHeaderPress} activeOpacity={1}>
+      <TouchableOpacity style={styles.miniHeader} activeOpacity={1}>
         <Icon name="calendar" size={30} color="black" />
         <View style={styles.deliferyInfo}>
           <Text style={styles.dateText}>{deliveryDate}</Text>

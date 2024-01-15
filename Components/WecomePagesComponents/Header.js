@@ -2,12 +2,21 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
+
+const navigation = useNavigation();
+
+const goBack = () => {
+  navigation.goBack();
+}
+
+
   return (
     <View style={styles.headerContainer}>
       {/* Left Arrow Icon */}
-      <TouchableOpacity style={styles.iconContainer}>
+      <TouchableOpacity style={styles.iconContainer} onPress={()=>goBack()}  >
         <View style={styles.circle}>
           <Feather name="arrow-left" size={24} color="black" />
         </View>

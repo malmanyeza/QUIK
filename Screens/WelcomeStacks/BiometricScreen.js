@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import BiometricButton from '../Components/WecomePagesComponents/BiometricButton';
-import Header from '../Components/WecomePagesComponents/Header';
+import BiometricButton from '../../Components/WecomePagesComponents/BiometricButton';
+import Header from '../../Components/WecomePagesComponents/Header';
 
 const BiometricScreen = () => {
   return (
