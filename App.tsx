@@ -8,6 +8,7 @@ import CountriesScreen from './Screens/CountriesScreen';
 import { ModalsProvider } from './hooks/modalsContext';
 import CarRentalStack from './Screens/CarRentalStacks/CarRentalStack';
 import WelcomeStack from './Screens/WelcomeStacks/WelcomeStacks';
+import DestinationScreen from './Screens/RidesStacks/DestinationScreen';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ const App = () => {
       />
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Destination" component={DestinationScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Welcome" component={WelcomeStack} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
           <Stack.Screen name="CarRental" component={CarRentalStack} options={{ headerShown: false }} />
