@@ -1,92 +1,137 @@
-import React, { useRef } from 'react';
-import { View, StyleSheet, PanResponder, Text } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
+import React, { useRef, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, PanResponder, Animated, Dimensions, TouchableOpacity, StatusBar, TextInput, Keyboard } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import SearchBar from './SearchBar';
+
+const { height } = Dimensions.get('screen');
 
 const DestinationPullup = () => {
-  const translateY = useSharedValue(-100); // Initial translateY to hide most of the drawer
-  const drawerHeight = 300; // Change this to your desired drawer height
-  const threshold = -50; // Threshold to start revealing the content
-
-  const panResponder = useRef(
+  const translateY = useRef(new Animated.Value(0)).current;
+  const [panResponder] = useState(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: (_, { dy }) => {
-        translateY.value = Math.max(-drawerHeight, Math.min(0, translateY.value + dy));
-      },
-      onPanResponderRelease: (_, { vy }) => {
-        if (vy > 0) {
-          // If velocity is positive, user is swiping down
-          translateY.value = withSpring(-drawerHeight);
-        } else {
-          // If velocity is negative, user is swiping up
-          translateY.value = withSpring(0);
+      
+      onPanResponderRelease: (_, gestureState) => {
+        if (gestureState.dy < -100) {
+          Animated.timing(translateY, {
+            toValue: -height + 200,
+            duration: 300,
+            useNativeDriver: false,
+          }).start();
+        } else if(gestureState.dy < 100){
+          Animated.timing(translateY, {
+            toValue: -height + 200,
+            duration: 300,
+            useNativeDriver: false,
+          }).start();
+        }
+        else {
+          Animated.timing(translateY, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: false,
+          }).start();
         }
       },
     })
-  ).current;
+  );
 
-  const drawerStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: translateY.value }],
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        // Animate the view to its original position when the keyboard appears
+        Animated.timing(translateY, {
+          toValue: -height + 500,
+          duration: 300,
+          useNativeDriver: false,
+        }).start();
+      }
+    );
+
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        // Handle the keyboard hide event if needed
+      }
+    );
+
+    return () => {
+      // Cleanup the listeners when the component unmounts
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
     };
-  });
+  }, [translateY]);
 
   return (
     <Animated.View
+      style={[
+        styles.container,
+        {
+          transform: [{ translateY }],
+        },
+      ]}
       {...panResponder.panHandlers}
-      style={[styles.drawer, drawerStyle]}
     >
-      <View style={styles.drawerContent}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Where to?</Text>
-        </View>
-        {/* Other content of the drawer */}
-        <View style={styles.searchBar}>
-          {/* Your search bar component */}
-        </View>
-        <View style={styles.otherContent}>
-          {/* Other content components */}
-        </View>
-      </View>
+      <StatusBar barStyle="dark-content" backgroundColor={'transparent'} />
+      <View style={styles.handle} />
+      <Text style={styles.header}>Where to?</Text>
+      <SearchBar />
+      <Text style={styles.content}>Your content goes here</Text>
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
-  drawer: {
+  container: {
+    height: height,
     position: 'absolute',
+    bottom: -(height - 150),
     left: 0,
     right: 0,
-    bottom: 0,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    elevation: 5,
+    padding: 20,
   },
-  drawerContent: {
-    padding: 16,
-    paddingBottom: 0,
+  handle: {
+    width: 40,
+    height: 5,
+    backgroundColor: 'lightgray',
+    alignSelf: 'center',
+    borderRadius: 3,
+    marginTop: 10,
   },
   header: {
-    height: 40,
-    alignItems: 'center',
-    
-    justifyContent: 'center',
-  },
-  headerText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: 'black',
+    marginTop: 10,
   },
-  searchBar: {
-    marginVertical: 16,
-    // Your search bar styles
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
   },
-  otherContent: {
-    // Styles for other content
+  searchIcon: {
+    marginRight: 10,
+  },
+  searchBarText: {
+    flex: 1,
+    borderRadius: 50,
+    backgroundColor: 'lightgray',
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+  },
+  skipButton: {
+    marginLeft: 10,
+  },
+  skipButtonText: {
+    color: 'gray',
+  },
+  content: {
+    fontSize: 18,
+    marginTop: 20,
   },
 });
 
